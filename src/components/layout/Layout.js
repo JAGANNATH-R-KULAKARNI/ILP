@@ -1,16 +1,14 @@
 import React from 'react';
 import MenuUI from '../menu/Menu';
 
-class Layout extends React.Component
+function Layout()
 {
-  render()
-  {
     return (
       <div>
         <MenuUI/>
       </div>
     );
-  }
+
 };
 
 export default Layout;

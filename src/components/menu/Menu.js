@@ -8,7 +8,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useState, useEffect } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -23,7 +22,7 @@ const drawerWidth = 240;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(0),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -148,12 +147,12 @@ export default function PersistentDrawerRight() {
             open={state["left"]}
             onClose={toggleDrawer("left", false)}
           >
-            <AppBar position="fixed" open={open} style={{background : '#FFFFFF',height : '60px'}} elevation={1}>
+            <AppBar position="absolute" open={open} style={{background : '#FFFFFF',height : '60px'}} elevation={0}>
         <Toolbar>
           <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div" style={{paddingTop : '15px'}}>
             <img src={Logo} alt='Qtpi' style={{width : '70px',height : '41px'}}/>
           </Typography>
-      {CrossBut}
+           {CrossBut}
         </Toolbar>
       </AppBar>
             {list("left")}
@@ -167,10 +166,11 @@ export default function PersistentDrawerRight() {
          
          {menuButtonStatus ? ButtonsMenuHorrizontal : MenuI}
         </Toolbar>
-        <BodyUI/>
+        
       </AppBar>
       <Main open={open}>
       <DrawerHeader />
+        <BodyUI/>
         {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
