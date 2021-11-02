@@ -16,6 +16,9 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useState, useEffect } from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Logo from '../../images/qtpi.png'
 
@@ -136,7 +139,35 @@ export default function PersistentDrawerRight() {
   );
 
   const [open, setOpen] = React.useState(false);
-
+  const menuButtonStatus =useMediaQuery('(min-width:600px)');
+  const ButtonsMenuHorrizontal=(
+    <Stack spacing={2} direction="row">
+    <Button variant="contained" style={{
+      backgroundColor : '#FF5872',color : 'white',fontSize : '18px',fontFamily : 'monospace',
+      }}><b>Text</b></Button>
+    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'monospace'}}><b>Contained</b></Button>
+    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'monospace'}}><b>Outlined</b></Button>
+  </Stack>
+  );
+  const ButtonsMenuVertical=(
+    <Stack spacing={2} direction="column">
+    <Button variant="contained" style={{
+      backgroundColor : '#FF5872',color : 'white',fontSize : '18px',fontFamily : 'monospace',
+      }}><b>Text</b></Button>
+    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'monospace'}}><b>Contained</b></Button>
+    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'monospace'}}><b>Outlined</b></Button>
+  </Stack>
+  );
+  const MenuI=(
+    <IconButton
+    aria-label="open drawer"
+    edge="end"
+    onClick={toggleDrawer("left", true)}
+    style={{color : 'black'}}
+  >
+             <MenuIcon />
+  </IconButton>
+  );
   return (
     <Box sx={{ display: 'flex' }}>
          <Drawer
@@ -145,6 +176,7 @@ export default function PersistentDrawerRight() {
             onClose={toggleDrawer("left", false)}
           >
             {list("left")}
+            {ButtonsMenuVertical}
           </Drawer>
       <CssBaseline />
       <AppBar position="fixed" open={open} style={{background : '#FFFFFF',height : '60px'}} elevation={1}>
@@ -152,18 +184,13 @@ export default function PersistentDrawerRight() {
           <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
             <img src={Logo} alt='Qtpi' style={{width : '70px',height : '41px'}}/>
           </Typography>
-          <IconButton
-            aria-label="open drawer"
-            edge="end"
-            onClick={toggleDrawer("left", true)}
-            style={{color : 'black'}}
-          >
-                     <MenuIcon />
-          </IconButton>
+         
+         {menuButtonStatus ? ButtonsMenuHorrizontal : MenuI}
         </Toolbar>
+        <b style={{color : 'black'}}>akaka</b>
       </AppBar>
       <Main open={open}>
-        <DrawerHeader />
+      <DrawerHeader />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
