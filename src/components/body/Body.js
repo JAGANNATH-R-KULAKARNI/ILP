@@ -4,29 +4,10 @@ import Paper from '@mui/material/Paper';
 import BackGroundGB from '../../images/greenBG.png';
 import HELP from '../utilities/help';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import Kit from '../../images/kitbox.png';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import RatingUI from './rating';
 import PaymentUI from '../payment/Payment';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 
 export default function Elevation() {
 
