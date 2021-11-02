@@ -188,7 +188,7 @@ export default function PersistentDrawerRight() {
          
          {menuButtonStatus ? ButtonsMenuHorrizontal : MenuI}
         </Toolbar>
-        <b style={{color : 'black'}}>akaka</b>
+        {/* <b style={{color : 'black'}}>akaka</b> */}
       </AppBar>
       <Main open={open}>
       <DrawerHeader />
