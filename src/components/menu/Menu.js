@@ -5,20 +5,14 @@ import Drawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
-import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { useState, useEffect } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 import Logo from '../../images/qtpi.png'
 
@@ -106,40 +100,6 @@ export default function PersistentDrawerRight() {
     setState({ ...state, [anchor]: open });
   };
   const { height, width } = useWindowDimensions();
-
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : width }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
-  const [open, setOpen] = React.useState(false);
-  const menuButtonStatus =useMediaQuery('(min-width:600px)');
   const ButtonsMenuHorrizontal=(
     <Stack spacing={2} direction="row">
     <Button variant="contained" style={{
@@ -158,6 +118,29 @@ export default function PersistentDrawerRight() {
     <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'monospace'}}><b>Outlined</b></Button>
   </Stack>
   );
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : width }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+      style={{
+        height: "200px",
+        width: width,
+        minHeight: "10em",
+        paddingTop: height/3,
+        display: 'table-cell',
+        verticalAlign: 'middle'
+      }}
+    >
+      {ButtonsMenuVertical}
+    </Box>
+  );
+
+  const [open, setOpen] = React.useState(false);
+  const menuButtonStatus =useMediaQuery('(min-width:600px)');
+
   const MenuI=(
     <IconButton
     aria-label="open drawer"
@@ -168,6 +151,17 @@ export default function PersistentDrawerRight() {
              <MenuIcon />
   </IconButton>
   );
+
+  const CrossBut=(
+    <IconButton
+    aria-label="open drawer"
+    edge="end"
+    onClick={toggleDrawer("left", false)}
+    style={{color : 'black'}}
+  >
+             <CancelIcon/>
+  </IconButton>
+  );
   return (
     <Box sx={{ display: 'flex' }}>
          <Drawer
@@ -175,13 +169,20 @@ export default function PersistentDrawerRight() {
             open={state["left"]}
             onClose={toggleDrawer("left", false)}
           >
+            <AppBar position="fixed" open={open} style={{background : '#FFFFFF',height : '60px'}} elevation={1}>
+        <Toolbar>
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div" style={{paddingTop : '15px'}}>
+            <img src={Logo} alt='Qtpi' style={{width : '70px',height : '41px'}}/>
+          </Typography>
+      {CrossBut}
+        </Toolbar>
+      </AppBar>
             {list("left")}
-            {ButtonsMenuVertical}
           </Drawer>
       <CssBaseline />
       <AppBar position="fixed" open={open} style={{background : '#FFFFFF',height : '60px'}} elevation={1}>
         <Toolbar>
-          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div" style={{paddingTop : '15px'}}>
             <img src={Logo} alt='Qtpi' style={{width : '70px',height : '41px'}}/>
           </Typography>
          
