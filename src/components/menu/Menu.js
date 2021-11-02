@@ -13,6 +13,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CancelIcon from '@mui/icons-material/Cancel';
+import BodyUI from '../body/Body';
+import HELP from '../utilities/help';
 
 import Logo from '../../images/qtpi.png'
 
@@ -62,29 +64,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }));
 
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height
-  };
-}
-
-function useWindowDimensions() {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return windowDimensions;
-}
-
 export default function PersistentDrawerRight() {
   const [state, setState] = React.useState({
     top: false,
@@ -99,23 +78,23 @@ export default function PersistentDrawerRight() {
 
     setState({ ...state, [anchor]: open });
   };
-  const { height, width } = useWindowDimensions();
+  const { height, width } = HELP();
   const ButtonsMenuHorrizontal=(
     <Stack spacing={2} direction="row">
     <Button variant="contained" style={{
-      backgroundColor : '#FF5872',color : 'white',fontSize : '18px',fontFamily : 'monospace',
-      }}><b>Text</b></Button>
-    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'monospace'}}><b>Contained</b></Button>
-    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'monospace'}}><b>Outlined</b></Button>
+      backgroundColor : '#FF5872',color : 'white',fontSize : '18px',fontFamily : 'roboto',
+      }}><b>Buy Kit</b></Button>
+    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'roboto'}}><b>Projects</b></Button>
+    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'roboto'}}><b>Contact Us</b></Button>
   </Stack>
   );
   const ButtonsMenuVertical=(
     <Stack spacing={2} direction="column">
     <Button variant="contained" style={{
-      backgroundColor : '#FF5872',color : 'white',fontSize : '18px',fontFamily : 'monospace',
-      }}><b>Text</b></Button>
-    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'monospace'}}><b>Contained</b></Button>
-    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'monospace'}}><b>Outlined</b></Button>
+      backgroundColor : '#FF5872',color : 'white',fontSize : '18px',fontFamily : 'roboto',
+      }}><b>Buy Kit</b></Button>
+    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'roboto'}}><b>Projects</b></Button>
+    <Button variant="text" style={{color : 'black',fontSize : '18px',fontFamily : 'roboto'}}><b>Contact Us</b></Button>
   </Stack>
   );
 
@@ -180,7 +159,7 @@ export default function PersistentDrawerRight() {
             {list("left")}
           </Drawer>
       <CssBaseline />
-      <AppBar position="fixed" open={open} style={{background : '#FFFFFF',height : '60px'}} elevation={1}>
+      <AppBar position="fixed" open={open} style={{background : '#FFFFFF',height : '60px'}} elevation={0}>
         <Toolbar>
           <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div" style={{paddingTop : '15px'}}>
             <img src={Logo} alt='Qtpi' style={{width : '70px',height : '41px'}}/>
@@ -188,11 +167,11 @@ export default function PersistentDrawerRight() {
          
          {menuButtonStatus ? ButtonsMenuHorrizontal : MenuI}
         </Toolbar>
-        {/* <b style={{color : 'black'}}>akaka</b> */}
+        <BodyUI/>
       </AppBar>
       <Main open={open}>
       <DrawerHeader />
-        <Typography paragraph>
+        {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
@@ -218,7 +197,7 @@ export default function PersistentDrawerRight() {
           tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        </Typography> */}
         </Main>
         <Drawer
         sx={{
